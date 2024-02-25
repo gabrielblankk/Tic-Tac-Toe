@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    box-sizing: border-box;
+    transition: var(--themeTransition);
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color1);
+}
+
+.main-container {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid {
+    width: 521px;
+    height: 521px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    background-color: var(--color2);
+}
+
+.squares {
+    border: none;
+    background-color: var(--color1);
+    height: 167px;
+    width: 167px;
+    font-size: 0px;
+    font-family: cursive;
+    cursor: pointer;
+}
+
+.scores-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+}
+
+.scores {
+    font-family: cursive;
+    font-size: 60px;
+    color: var(--color2);
+    margin: 60px;
+}
+
+.restart-container {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#restartBtn {
+    background-color: var(--color2);
+    border: none;
+    width: 150px;
+    height: 75px;
+    border-radius: 20px;
+    color: var(--color4);
+    font-size: 25px;
+    font-family: cursive;
+    text-align: center;
+    cursor: pointer;
+}
+
+#restartBtn:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+#restartBtn:active {
+    transform: scale(0.9);
+    transition: 0.3s;
+}
+
+.turn-indicator {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#xIndicator {
+    font-size: 0px;
+    color: var(--color3);
+    font-family: cursive;
+    transition: 0.3s;
+}
+
+#oIndicator {
+    font-size: 0px;
+    color: var(--color4);
+    font-family: cursive;
+    transition: 0.3s;
+}
+
+#xColor {
+    color: var(--color3);
+}
+
+#oColor {
+    color: var(--color4);
+}
+
+#drawScore, #xScore, #oScore {
+    color: var(--color2);
+    display: inline-block;
+}
+
+#line {
+    position: fixed;
+}
+
+.switch-container {
+    width: 100px;
+    height: 50px;
+    position: fixed;
+    top: 5%;
+    left: 96%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#switch {
+    display: none;
+}
+
+.switchBtn {
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: var(--color4);
+    position: relative;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.switchBtn i {
+    color: var(--color4);
+    z-index: 1;
+}
+
+.switchBtn::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: var(--color1);
+    margin: 5px;
+    transition: 0.3s;
+}
+
+#switch:checked + .switchBtn::before {
+    transform: translateX(50px);
+}
+
+.play {
+    animation: play 0.2s 0s forwards;
+}
+
+.reset {
+    animation: reset 2s 0s;
+}
+
+.winLine {
+    animation: winLine 0.5s 0s;
+}
+
+.draw {
+    animation: draw 0.2s 0s alternate infinite;
+}
+
+.changeScore {
+    animation: changeScore 0.5s 0s;
+}
+
+:root {
+    --beforeScale: scale(0);
+    --afterScale: scale(1);
+
+    --color1: #F8EDE3;
+    --color2: #DEB6AB;
+    --color3: #AC7D88;
+    --color4: #85586F;
+
+    --themeTransition: 0s;
+}
+
+@keyframes play {
+    0% {
+        font-size: 0px;
+    }
+
+    80% {
+        font-size: 120px;
+    }
+
+    100% {
+        font-size: 100px;
+    }
+}
+
+@keyframes reset {
+    50% {
+        opacity: 0%;
+        transform: scale(0.75);
+    }
+}
+
+@keyframes winLine {
+    from {
+        transform: var(--beforeScale);
+    }
+
+    to {
+        transform: var(--afterScale);
+    }
+}
+
+@keyframes draw {
+    from {
+        background-color: var(--color2);
+    }
+
+    to {
+        background-color: var(--color1);
+    }
+}
+
+@keyframes changeScore {
+    0%, 100% {
+        opacity: 100%;
+        transform: translateY(0%);
+    }
+
+    33% {
+        opacity: 0%;
+        transform: translateY(-50%);
+    }
+
+    66% {
+        opacity: 0%;
+        transform: translateY(50%);
+    }
+}
